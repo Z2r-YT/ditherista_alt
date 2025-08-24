@@ -3769,12 +3769,12 @@
                    </layout>
                   </item>
                   <item row="4" column="0">
-                   <layout class="QVBoxLayout" name="verticalLayout_29">
+                   <layout class="QVBoxLayout" name="verticalLayout_scaleMonoLabel">
                     <property name="spacing">
                      <number>0</number>
                     </property>
                     <item>
-                     <spacer name="verticalSpacer_33">
+                     <spacer name="verticalSpacer_scaleMonoLabel">
                       <property name="orientation">
                        <enum>Qt::Orientation::Vertical</enum>
                       </property>
@@ -3790,7 +3790,7 @@
                      </spacer>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_30">
+                     <widget class="QLabel" name="label_scaleMono">
                       <property name="toolTip">
                        <string extracomment="Adjust source image scale.">Adjust source image scale.</string>
                       </property>
@@ -3802,12 +3802,12 @@
                    </layout>
                   </item>
                   <item row="4" column="1">
-                   <layout class="QVBoxLayout" name="verticalLayout_30">
+                   <layout class="QVBoxLayout" name="verticalLayout_scaleMonoSlider">
                     <property name="spacing">
                      <number>0</number>
                     </property>
                     <item>
-                     <spacer name="verticalSpacer_34">
+                     <spacer name="verticalSpacer_scaleMonoSlider">
                       <property name="orientation">
                        <enum>Qt::Orientation::Vertical</enum>
                       </property>
@@ -3890,12 +3890,12 @@
                    </widget>
                   </item>
                   <item row="4" column="3">
-                   <layout class="QVBoxLayout" name="verticalLayout_31">
+                   <layout class="QVBoxLayout" name="verticalLayout_scaleMonoReset">
                     <property name="spacing">
                      <number>0</number>
                     </property>
                     <item>
-                     <spacer name="verticalSpacer_35">
+                     <spacer name="verticalSpacer_scaleMonoReset">
                       <property name="orientation">
                        <enum>Qt::Orientation::Vertical</enum>
                       </property>
@@ -4166,12 +4166,12 @@
                    </layout>
                   </item>
                   <item row="5" column="0">
-                   <layout class="QVBoxLayout" name="verticalLayout_32">
+                   <layout class="QVBoxLayout" name="verticalLayout_scaleColorLabel">
                     <property name="spacing">
                      <number>0</number>
                     </property>
                     <item>
-                     <spacer name="verticalSpacer_36">
+                     <spacer name="verticalSpacer_scaleColorLabel">
                       <property name="orientation">
                        <enum>Qt::Orientation::Vertical</enum>
                       </property>
@@ -4187,7 +4187,7 @@
                      </spacer>
                     </item>
                     <item>
-                     <widget class="QLabel" name="label_31">
+                     <widget class="QLabel" name="label_scaleColor">
                       <property name="toolTip">
                        <string extracomment="Adjust source image scale.">Adjust source image scale.</string>
                       </property>
@@ -4199,12 +4199,12 @@
                    </layout>
                   </item>
                   <item row="5" column="1">
-                   <layout class="QVBoxLayout" name="verticalLayout_33">
+                   <layout class="QVBoxLayout" name="verticalLayout_scaleColorSlider">
                     <property name="spacing">
                      <number>0</number>
                     </property>
                     <item>
-                     <spacer name="verticalSpacer_37">
+                     <spacer name="verticalSpacer_scaleColorSlider">
                       <property name="orientation">
                        <enum>Qt::Orientation::Vertical</enum>
                       </property>
@@ -4287,12 +4287,12 @@
                    </widget>
                   </item>
                   <item row="5" column="3">
-                   <layout class="QVBoxLayout" name="verticalLayout_34">
+                   <layout class="QVBoxLayout" name="verticalLayout_scaleColorReset">
                     <property name="spacing">
                      <number>0</number>
                     </property>
                     <item>
-                     <spacer name="verticalSpacer_38">
+                     <spacer name="verticalSpacer_scaleColorReset">
                       <property name="orientation">
                        <enum>Qt::Orientation::Vertical</enum>
                       </property>
