@@ -157,26 +157,32 @@ private slots:
     void resetContrastButtonMonoClickedSlot();
     void resetBrightnessButtonMonoClickedSlot();
     void resetGammaButtonMonoClickedSlot();
+    void resetScaleButtonMonoClickedSlot();
     void contrastSliderMonoValueChangedSlot(int value);
     void brightnessSliderMonoValueChangedSlot(int value);
     void gammaSliderMonoValueChangedSlot(int value);
+    void scaleSliderMonoValueChangedSlot(int value);
     void contrastEditMonoEditingFinishedSlot(double value = 0.0);
     void brightnessEditMonoEditingFinishedSlot(double value = 0.0);
     void gammaEditMonoEditingFinishedSlot(double value = 0.0);
+    void scaleEditMonoEditingFinishedSlot(double value = 0.0);
     void showOriginalMonoButtonClickedSlot(int checked);
     // image adjustment color
     void resetContrastButtonColorClickedSlot();
     void resetBrightnessButtonColorClickedSlot();
     void resetGammaButtonColorClickedSlot();
     void resetSaturationButtonColorClickedSlot();
+    void resetScaleButtonColorClickedSlot();
     void contrastSliderColorValueChangedSlot(int);
     void brightnessSliderColorValueChangedSlot(int);
     void gammaSliderColorValueChangedSlot(int);
     void saturationSliderColorValueChangedSlot(int);
+    void scaleSliderColorValueChangedSlot(int);
     void contrastEditColorEditingFinishedSlot(double value = 0.0);
     void brightnessEditColorEditingFinishedSlot(double value = 0.0);
     void gammaEditColorEditingFinishedSlot(double value = 0.0);
     void saturationEditColorEditingFinishedSlot(double value = 0.0);
+    void scaleEditColorEditingFinishedSlot(double value = 0.0);
     void showOriginalColorButtonClickedSlot(int checked);
     // UI helpers
     void paletteSourceWidgetIndexChangedSlot(int index);

@@ -31,6 +31,13 @@ void MainWindow::resetGammaButtonMonoClickedSlot() {
     gammaEditMonoEditingFinishedSlot();
 };
 
+void MainWindow::resetScaleButtonMonoClickedSlot() {
+    /* user resets the source image's scale via reset button */
+    whileBlocking(ui->scaleSliderMono)->setValue(DEFAULT_MONO_SCALE_ADJUST);
+    whileBlocking(ui->scaleEditMono)->setValue(DEFAULT_MONO_SCALE_ADJUST / 100.0);
+    scaleEditMonoEditingFinishedSlot();
+};
+
 void MainWindow::contrastSliderMonoValueChangedSlot(int value) {
     /* user adjusts the contrast slider */
     whileBlocking(ui->contrastEditMono)->setValue(value / 100.0);
@@ -49,6 +56,12 @@ void MainWindow::gammaSliderMonoValueChangedSlot(int value) {
     gammaEditMonoEditingFinishedSlot();
 }
 
+void MainWindow::scaleSliderMonoValueChangedSlot(int value) {
+    /* user adjusts the scale slider */
+    whileBlocking(ui->scaleEditMono)->setValue(value / 100.0);
+    scaleEditMonoEditingFinishedSlot();
+}
+
 void MainWindow::brightnessEditMonoEditingFinishedSlot(double) {
     /* triggered when user edited the numerical brightness input */
     int iValue = (int)(ui->brightnessEditMono->value() * 100);
@@ -65,6 +78,16 @@ void MainWindow::gammaEditMonoEditingFinishedSlot(double) {
     if (imageHashMono.gamma != iValue) {
         imageHashMono.gamma = iValue;
         whileBlocking(ui->gammaSliderMono)->setValue(iValue);
+        adjustImageMono();
+    }
+}
+
+void MainWindow::scaleEditMonoEditingFinishedSlot(double) {
+    /* triggered when user edited the numerical scale input */
+    int iValue = (int)(ui->scaleEditMono->value() * 100);
+    if (imageHashMono.scale != iValue) {
+        imageHashMono.scale = iValue;
+        whileBlocking(ui->scaleSliderMono)->setValue(iValue);
         adjustImageMono();
     }
 }
@@ -132,6 +155,13 @@ void MainWindow::resetSaturationButtonColorClickedSlot() {
     saturationEditColorEditingFinishedSlot();
 }
 
+void MainWindow::resetScaleButtonColorClickedSlot() {
+    /* user resets the source image's scale via reset button */
+    whileBlocking(ui->scaleSliderColor)->setValue(DEFAULT_COLOR_SCALE_ADJUST);
+    whileBlocking(ui->scaleEditColor)->setValue(DEFAULT_COLOR_SCALE_ADJUST / 100.0);
+    scaleEditColorEditingFinishedSlot();
+}
+
 // color image adjustment slider slots
 
 void MainWindow::contrastSliderColorValueChangedSlot(int value) {
@@ -156,6 +186,12 @@ void MainWindow::saturationSliderColorValueChangedSlot(int value) {
     /* user adjusts the saturation slider */
     whileBlocking(ui->saturationEditColor)->setValue(value / 100.0);
     saturationEditColorEditingFinishedSlot();
+}
+
+void MainWindow::scaleSliderColorValueChangedSlot(int value) {
+    /* user adjusts the scale slider */
+    whileBlocking(ui->scaleEditColor)->setValue(value / 100.0);
+    scaleEditColorEditingFinishedSlot();
 }
 
 // color image adjustment spin box slots
@@ -196,6 +232,16 @@ void MainWindow::saturationEditColorEditingFinishedSlot(double) {
     if (imageHashColor.saturation != iValue) {
         imageHashColor.saturation = iValue;
         whileBlocking(ui->saturationSliderColor)->setValue(iValue);
+        adjustImageColor();
+    }
+}
+
+void MainWindow::scaleEditColorEditingFinishedSlot(double) {
+    /* triggered when user edited the numerical scale input */
+    int iValue = (int)(ui->scaleEditColor->value() * 100);
+    if (imageHashColor.scale != iValue) {
+        imageHashColor.scale = iValue;
+        whileBlocking(ui->scaleSliderColor)->setValue(iValue);
         adjustImageColor();
     }
 }

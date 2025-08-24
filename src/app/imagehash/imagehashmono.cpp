@@ -15,6 +15,7 @@ void ImageHashMono::setSourceImage(const QImage* inputImage) {
     brightness = DEFAULT_MONO_BRIGHTNESS_ADJUST;
     contrast = DEFAULT_MONO_CONTRAST_ADJUST;
     gamma = DEFAULT_MONO_GAMMA_ADJUST;
+    scale = DEFAULT_MONO_SCALE_ADJUST;
     adjustSource();
 }
 
@@ -23,6 +24,37 @@ void ImageHashMono::adjustSource() {
     double dBrightness = (double)brightness / 100.0;
     double dContrast = (double)(contrast / 100.0) + 1.0;
     double dGamma = 1.0 / ((double)(gamma / 100.0) + 1.0);
+    double dScale = (double)scale / 100.0;
+    
+    // Apply scaling first if needed
+    QImage scaledOrigQImage = origQImage;
+    if (dScale != 1.0) {
+        int newWidth = static_cast<int>(origQImage.width() * dScale);
+        int newHeight = static_cast<int>(origQImage.height() * dScale);
+        scaledOrigQImage = origQImage.scaled(newWidth, newHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    }
+    
+    // Recreate sourceImage and linear image with scaled dimensions if needed
+    if (sourceImage != nullptr && (sourceImage->width != scaledOrigQImage.width() || sourceImage->height != scaledOrigQImage.height())) {
+        DitherImage_free(sourceImage);
+        DitherImage_free(origLinear);
+        sourceImage = DitherImage_new(scaledOrigQImage.width(), scaledOrigQImage.height());
+        origLinear = DitherImage_new(scaledOrigQImage.width(), scaledOrigQImage.height());
+        
+        // Fill the linear image with scaled original data
+        for(int y = 0; y < sourceImage->height; y++) {
+            for(int x = 0; x < sourceImage->width; x++) {
+                const QRgb pixel = scaledOrigQImage.pixel(QPoint(x, y));
+                DitherImage_set_pixel_rgba(origLinear, x, y, qRed(pixel), qGreen(pixel), qBlue(pixel), qAlpha(pixel), true);
+            }
+        }
+    }
+    
+    // Update sourceQImage to match scaled dimensions
+    if (sourceQImage.width() != scaledOrigQImage.width() || sourceQImage.height() != scaledOrigQImage.height()) {
+        sourceQImage = QImage(scaledOrigQImage.width(), scaledOrigQImage.height(), QImage::Format_RGBA8888);
+    }
+    
     for (int y = 0; y < sourceImage->height; y++) {
         for (int x = 0; x < sourceImage->width; x++) {
             const size_t i = y * sourceImage->width + x;
