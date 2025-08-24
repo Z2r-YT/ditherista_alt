@@ -149,9 +149,11 @@ void MainWindow::uiSetup() {
     setResetIcon(ui->resetBrightnessButtonColor, &reset_icon);
     setResetIcon(ui->resetGammaButtonColor, &reset_icon);
     setResetIcon(ui->resetSaturationButtonColor, &reset_icon);
+    setResetIcon(ui->resetScaleButtonColor, &reset_icon);
     setResetIcon(ui->resetContrastButtonMono, &reset_icon);
     setResetIcon(ui->resetBrightnessButtonMono, &reset_icon);
     setResetIcon(ui->resetGammaButtonMono, &reset_icon);
+    setResetIcon(ui->resetScaleButtonMono, &reset_icon);
     setResetIcon(ui->resetMonoColors, &reset_icon);
     setResetIcon(ui->resetHueWeightButton, &reset_icon);
     setResetIcon(ui->resetChromaWeightButton, &reset_icon);
@@ -262,26 +264,32 @@ void MainWindow::connectSignals() {
     connect(ui->resetContrastButtonMono, SIGNAL(clicked()), this, SLOT(resetContrastButtonMonoClickedSlot()));
     connect(ui->resetBrightnessButtonMono, SIGNAL(clicked()), this, SLOT(resetBrightnessButtonMonoClickedSlot()));
     connect(ui->resetGammaButtonMono, SIGNAL(clicked()), this, SLOT(resetGammaButtonMonoClickedSlot()));
+    connect(ui->resetScaleButtonMono, SIGNAL(clicked()), this, SLOT(resetScaleButtonMonoClickedSlot()));
     connect(ui->contrastEditMono, SIGNAL(valueChanged(double)), this, SLOT(contrastEditMonoEditingFinishedSlot(double)), Qt::QueuedConnection);
     connect(ui->brightnessEditMono, SIGNAL(valueChanged(double)), this, SLOT(brightnessEditMonoEditingFinishedSlot(double)), Qt::QueuedConnection);
     connect(ui->gammaEditMono, SIGNAL(valueChanged(double)), this, SLOT(gammaEditMonoEditingFinishedSlot(double)), Qt::QueuedConnection);
+    connect(ui->scaleEditMono, SIGNAL(valueChanged(double)), this, SLOT(scaleEditMonoEditingFinishedSlot(double)), Qt::QueuedConnection);
     connect(ui->contrastSliderMono, SIGNAL(valueChanged(int)), this, SLOT(contrastSliderMonoValueChangedSlot(int)), Qt::QueuedConnection);
     connect(ui->brightnessSliderMono, SIGNAL(valueChanged(int)), this, SLOT(brightnessSliderMonoValueChangedSlot(int)), Qt::QueuedConnection);
     connect(ui->gammaSliderMono, SIGNAL(valueChanged(int)), this, SLOT(gammaSliderMonoValueChangedSlot(int)), Qt::QueuedConnection);
+    connect(ui->scaleSliderMono, SIGNAL(valueChanged(int)), this, SLOT(scaleSliderMonoValueChangedSlot(int)), Qt::QueuedConnection);
     connect(ui->showOriginalMono, SIGNAL(stateChanged(int)), this, SLOT(showOriginalMonoButtonClickedSlot(int)));
     // connect signals - color image adjustments
     connect(ui->resetContrastButtonColor, SIGNAL(clicked()), this, SLOT(resetContrastButtonColorClickedSlot()));
     connect(ui->resetBrightnessButtonColor, SIGNAL(clicked()), this, SLOT(resetBrightnessButtonColorClickedSlot()));
     connect(ui->resetGammaButtonColor, SIGNAL(clicked()), this, SLOT(resetGammaButtonColorClickedSlot()));
     connect(ui->resetSaturationButtonColor, SIGNAL(clicked()), this, SLOT(resetSaturationButtonColorClickedSlot()));
+    connect(ui->resetScaleButtonColor, SIGNAL(clicked()), this, SLOT(resetScaleButtonColorClickedSlot()));
     connect(ui->contrastEditColor, SIGNAL(valueChanged(double)), this, SLOT(contrastEditColorEditingFinishedSlot(double)), Qt::QueuedConnection);
     connect(ui->brightnessEditColor, SIGNAL(valueChanged(double)), this, SLOT(brightnessEditColorEditingFinishedSlot(double)), Qt::QueuedConnection);
     connect(ui->gammaEditColor, SIGNAL(valueChanged(double)), this, SLOT(gammaEditColorEditingFinishedSlot(double)), Qt::QueuedConnection);
     connect(ui->saturationEditColor, SIGNAL(valueChanged(double)), this, SLOT(saturationEditColorEditingFinishedSlot(double)), Qt::QueuedConnection);
+    connect(ui->scaleEditColor, SIGNAL(valueChanged(double)), this, SLOT(scaleEditColorEditingFinishedSlot(double)), Qt::QueuedConnection);
     connect(ui->contrastSliderColor, SIGNAL(valueChanged(int)), this, SLOT(contrastSliderColorValueChangedSlot(int)), Qt::QueuedConnection);
     connect(ui->brightnessSliderColor, SIGNAL(valueChanged(int)), this, SLOT(brightnessSliderColorValueChangedSlot(int)), Qt::QueuedConnection);
     connect(ui->gammaSliderColor, SIGNAL(valueChanged(int)), this, SLOT(gammaSliderColorValueChangedSlot(int)), Qt::QueuedConnection);
     connect(ui->saturationSliderColor, SIGNAL(valueChanged(int)), this, SLOT(saturationSliderColorValueChangedSlot(int)), Qt::QueuedConnection);
+    connect(ui->scaleSliderColor, SIGNAL(valueChanged(int)), this, SLOT(scaleSliderColorValueChangedSlot(int)), Qt::QueuedConnection);
     connect(ui->showOriginalColor, SIGNAL(stateChanged(int)), this, SLOT(showOriginalColorButtonClickedSlot(int)));
     // connect signals - mono palette color adjustments
     connect(ui->monoColorOneButton, SIGNAL(colorChanged(QColor)), this, SLOT(monoColorOneChangedSlot(QColor)));

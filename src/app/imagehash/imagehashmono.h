@@ -12,6 +12,7 @@
 #define DEFAULT_MONO_BRIGHTNESS_ADJUST 0
 #define DEFAULT_MONO_CONTRAST_ADJUST 0
 #define DEFAULT_MONO_GAMMA_ADJUST 0
+#define DEFAULT_MONO_SCALE_ADJUST 100
 
 class ImageHashMono final : public ImageHash {
 public:
@@ -25,6 +26,7 @@ public:
     int brightness = DEFAULT_MONO_BRIGHTNESS_ADJUST;
     int contrast = DEFAULT_MONO_CONTRAST_ADJUST;
     int gamma = DEFAULT_MONO_GAMMA_ADJUST;
+    int scale = DEFAULT_MONO_SCALE_ADJUST;
 
 private:
     /* attributes */

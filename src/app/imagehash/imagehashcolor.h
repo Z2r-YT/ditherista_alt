@@ -13,6 +13,7 @@
 #define DEFAULT_COLOR_CONTRAST_ADJUST 0
 #define DEFAULT_COLOR_GAMMA_ADJUST 0
 #define DEFAULT_COLOR_SATURATION_ADJUST 0
+#define DEFAULT_COLOR_SCALE_ADJUST 100
 
 class ImageHashColor final : public ImageHash {
 public:
@@ -28,6 +29,7 @@ public:
     int contrast = DEFAULT_COLOR_CONTRAST_ADJUST;
     int gamma = DEFAULT_COLOR_GAMMA_ADJUST;
     int saturation = DEFAULT_COLOR_SATURATION_ADJUST;
+    int scale = DEFAULT_COLOR_SCALE_ADJUST;
 private:
     /* attributes */
     ColorImage* sourceImage = nullptr;  // source with adjustments as DitherImage

@@ -15,6 +15,7 @@ void ImageHashColor::setSourceImage(const QImage* inputImage) {
     contrast = DEFAULT_COLOR_CONTRAST_ADJUST;
     gamma = DEFAULT_COLOR_GAMMA_ADJUST;
     saturation = DEFAULT_COLOR_SATURATION_ADJUST;
+    scale = DEFAULT_COLOR_SCALE_ADJUST;
     adjustSource();
 }
 
@@ -23,10 +24,31 @@ void ImageHashColor::adjustSource() {
     double dContrast = (double)(contrast / 100.0) + 1.0;
     double dGamma = 1.0 / ((double)(gamma / 100.0) + 1.0);
     double dSaturation = (double)(saturation / 100.0) + 1.0;
+    double dScale = (double)scale / 100.0;
     double remove_gamma_exp = 1.0 / 2.2;
+    
+    // Apply scaling first if needed
+    QImage scaledOrigQImage = origQImage;
+    if (dScale != 1.0) {
+        int newWidth = static_cast<int>(origQImage.width() * dScale);
+        int newHeight = static_cast<int>(origQImage.height() * dScale);
+        scaledOrigQImage = origQImage.scaled(newWidth, newHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    }
+    
+    // Recreate sourceImage with scaled dimensions if needed
+    if (sourceImage != nullptr && (sourceImage->width != scaledOrigQImage.width() || sourceImage->height != scaledOrigQImage.height())) {
+        ColorImage_free(sourceImage);
+        sourceImage = ColorImage_new(scaledOrigQImage.width(), scaledOrigQImage.height());
+    }
+    
+    // Update sourceQImage to match scaled dimensions  
+    if (sourceQImage.width() != scaledOrigQImage.width() || sourceQImage.height() != scaledOrigQImage.height()) {
+        sourceQImage = QImage(scaledOrigQImage.width(), scaledOrigQImage.height(), QImage::Format_RGBA8888);
+    }
+    
     for (int y = 0; y < sourceImage->height; y++) {
         for (int x = 0; x < sourceImage->width; x++) {
-            const QRgb pixel = origQImage.pixel(x, y);
+            const QRgb pixel = scaledOrigQImage.pixel(x, y);
             // convert from sRGB to linear
             double fr = (double)qRed(pixel) / 255.0;
             double fg = (double)qGreen(pixel) / 255.0;
